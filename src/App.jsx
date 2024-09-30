@@ -1,4 +1,3 @@
-import { createContext } from "react"
 import TaskCart from "./TaskCard"
 
 
@@ -15,14 +14,14 @@ function App() {
 
 
   return (
-    <>
-      <h1>Smarter Tasks</h1>
+    <div className="p-4 space-y-4">
+      <h1 className="text-xl font-bold">Smarter Tasks</h1>
       <p><strong>Project: </strong>Graduation Final Year Project (Revamp College Website)</p>
       <div className="w-full grid md:grid-cols-2 gap-5">
         <TaskCart data={pendingData} />
         <TaskCart data={doneData} />
       </div>
-    </>
+    </div>
   )
 }
 
