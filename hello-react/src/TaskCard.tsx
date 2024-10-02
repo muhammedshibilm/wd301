@@ -1,4 +1,17 @@
-const TaskCard = ({ data }) => {
+import React from "react";
+
+interface TaskCardProps {
+  data: {
+    title: string;
+    subtask: {
+      title: string;
+      date: string;
+      assignee: string;
+    }[];
+  };
+}
+
+const TaskCard: React.FC<TaskCardProps> = ({ data }) => {
   return (
     <div className="bg-cyan-500 shadow-lg p-4 rounded-md space-y-4">
       <h2 className='text-center text-lg font-bold'>{data.title}</h2>
