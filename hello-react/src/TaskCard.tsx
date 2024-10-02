@@ -1,34 +1,21 @@
 import React from "react";
 
 interface TaskCardProps {
-  data: {
-    title: string;
-    subtask: {
-      title: string;
-      date: string;
-      assignee: string;
-    }[];
-  };
+  title: string,
+  dueDate?: Date,
+  completedAtDate?: Date,
+  assigneeName: string,
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ data }) => {
+const formateDate = (date: Date) => date.toLocaleDateString("en-CA")
+
+const TaskCard: React.FC<TaskCardProps> = ({ title , dueDate , completedAtDate ,assigneeName }) => {
   return (
-    <div className="bg-cyan-500 shadow-lg p-4 rounded-md space-y-4">
-      <h2 className='text-center text-lg font-bold'>{data.title}</h2>
-      <ul>
-        {data.subtask.map((task, index) => (
-          <div key={index} className="bg-cyan-600 p-2 my-2 rounded-md">
-            <li className="space-y-4">
-              <h3 className="font-bold">{task.title}</h3>
-              <p>{ data.title == "Pending" ? "Due on":"Completed on"}: {task.date}</p>
-              <p>Assignee: {task.assignee}</p>
-            </li>
-            </div>
-        ))}
-      </ul>
-      {
-       data.title == "Pending" ? <div className="bg-cyan-800 text-md font-semibold p-2 rounded-md">+ New task</div> : ""
-      }
+    <div className="bg-cyan-400 shadow-lg p-4 rounded-md space-y-4">
+      <h2 className="text-2xl font-bold">{title}</h2>
+      <p> {dueDate  && <p>Due Date: {formateDate(dueDate)}</p>}</p>
+      <p>{completedAtDate && <p>Completed At: {formateDate(completedAtDate)}</p>}</p>
+      <p>Assignee: {assigneeName}</p>  
     </div>
   );
 };
