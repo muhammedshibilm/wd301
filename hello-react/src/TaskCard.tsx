@@ -15,8 +15,8 @@ const TaskCard: React.FC<TaskProps> = ({
 }) => (
   <div className="p-4 bg-cyan-400 rounded-md shadow-md">
     <h3 className="text-lg font-bold">{title}</h3>
-    {dueDate && <p>Due on: {dueDate.toLocaleDateString()}</p>}
-    {completedAtDate && <p>Completed on: {completedAtDate.toLocaleDateString()}</p>}
+    {dueDate && <p>Due on: {dueDate.toLocaleDateString("en-CA")}</p>}
+    {completedAtDate && <p>Completed on: {completedAtDate.toLocaleDateString("en-CA")}</p>}
     {assigneeName && <p>Assignee: {assigneeName}</p>}
   </div>
 );
