@@ -10,19 +10,19 @@ export interface TaskProps {
 function formatWithIntl(date: Date): string {
   const day = date.getDate();
   const month = date.toLocaleString("en-US", { month: "long" });
+  const year = date.getFullYear(); 
 
   const pr = new Intl.PluralRules("en-US", { type: "ordinal" });
-  const suffixMap: Record<string,string> = {
+  const suffixMap: Record<string, string> = {
     one: "st",
     two: "nd",
     few: "rd",
-    other: "th"
+    other: "th",
   };
   const suffix = suffixMap[pr.select(day)];
 
-  return `${day}${suffix} ${month}`;
+  return `${day}${suffix} ${month} ${year}`; // Add the year to the formatted string
 }
-
 
 const TaskCard: React.FC<TaskProps> = ({
   title,
