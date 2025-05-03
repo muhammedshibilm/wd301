@@ -10,7 +10,7 @@ export interface TaskProps {
 function formatWithIntl(date: Date): string {
   const day = date.getDate();
   const month = date.toLocaleString("en-US", { month: "long" });
-  const year = date.getFullYear(); 
+  const year = date.getFullYear();
 
   const pr = new Intl.PluralRules("en-US", { type: "ordinal" });
   const suffixMap: Record<string, string> = {
@@ -21,7 +21,7 @@ function formatWithIntl(date: Date): string {
   };
   const suffix = suffixMap[pr.select(day)];
 
-  return `${day}${suffix} ${month} ${year}`; // Add the year to the formatted string
+  return `${day}${suffix} ${month} ${year}`;
 }
 
 const TaskCard: React.FC<TaskProps> = ({
