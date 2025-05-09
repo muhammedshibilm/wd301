@@ -31,7 +31,7 @@ class completedCard implements TaskCard {
 }
 
 
-const TaskCard = ({title,dueDate,assigneeName,completedAtDate}) => {
+const TaskCard = ({title,dueDate,assigneeName,completedAtDate}:{title: string, dueDate?: string, assigneeName: string, completedAtDate?: string}) => {
   if (dueDate != null){
     const item = new dueCard(title, assigneeName,dueDate)
     return (
