@@ -1,47 +1,58 @@
-import React from "react";
+import React from 'react';
+import './TaskCard.css'
 
-interface BaseTask {
-  title: string;
-  assigneeName: string;
+interface TaskCard {
+  title: string
+  assigneeName: string
 }
 
-interface DueTask extends BaseTask {
-  dueDate: Date;
-}
+class dueCard implements TaskCard {
+  title: string
+  assigneeName: string
+  dueDate: string
 
-interface CompletedTask extends BaseTask {
-  completedAtDate: Date;
-}
-
-type TaskProps = 
-  | ({ dueDate: Date } & BaseTask)
-  | ({ completedAtDate: Date } & BaseTask);
-
- const TaskCard: React.FC<TaskProps> = (props) => {
-  const format = (d: Date) =>
-    d.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-
-  if ("dueDate" in props) {
-    return (
-      <div className="bg-cyan-800 text-md font-semibold p-2 rounded-md">
-        <h3>{props.title}</h3>
-        <p>Due on: {format(props.dueDate)}</p>
-        <p>Assigned to: {props.assigneeName}</p>
-      </div>
-    );
-  } else {
-    return (
-      <div className="bg-cyan-800 text-md font-semibold p-2 rounded-md">
-        <h3>{props.title}</h3>
-        <p>Completed on: {format(props.completedAtDate)}</p>
-        <p>Assigned to: {props.assigneeName}</p>
-      </div>
-    );
+  constructor(title:string, assigneeName:string, dueDate: string){
+      this.title = title
+      this.assigneeName = assigneeName
+      this.dueDate = dueDate
   }
-};
+}
 
-export default TaskCard;
+class completedCard implements TaskCard {
+  title: string
+  assigneeName: string
+  completedAtDate: string
+
+  constructor(title:string, assigneeName:string, completedAtDate: string){
+      this.title = title
+      this.assigneeName = assigneeName
+      this.completedAtDate = completedAtDate
+  }
+}
+
+
+const TaskCard = ({title,dueDate,assigneeName,completedAtDate}) => {
+  if (dueDate != null){
+    const item = new dueCard(title, assigneeName,dueDate)
+    return (
+            <div className='task-card mt-3 m-3'>
+                <h1 className='font-bold text-2xl'>{item.title}</h1>
+                <p>Due on: {item.dueDate}</p>
+                <p>Assignee: {item.assigneeName}</p>
+            </div>
+    )
+} else{ 
+    const item = new completedCard(title,assigneeName,completedAtDate)
+    return (
+        <>
+            <div className='task-card mt-3 m-3'>
+                <h1 className='font-bold text-2xl'>{item.title}</h1>
+                <p>Completed on: {item.completedAtDate}</p>
+                <p>Assignee: {item.assigneeName}</p>
+            </div>
+        </>
+    )
+}
+}
+
+export default TaskCard
