@@ -1,41 +1,47 @@
 import React from "react";
 
-export interface TaskProps {
+interface BaseTask {
   title: string;
-  dueDate?: Date;
-  completedAtDate?: Date;
-  assigneeName?: string;
+  assigneeName: string;
 }
 
-function formatWithIntl(date: Date): string {
-  const day = date.getDate();
-  const month = date.toLocaleString("en-US", { month: "long" });
-  const year = date.getFullYear();
-
-  const pr = new Intl.PluralRules("en-US", { type: "ordinal" });
-  const suffixMap: Record<string, string> = {
-    one: "st",
-    two: "nd",
-    few: "rd",
-    other: "th",
-  };
-  const suffix = suffixMap[pr.select(day)];
-
-  return `${day}${suffix} ${month} ${year}`;
+interface DueTask extends BaseTask {
+  dueDate: Date;
 }
 
-const TaskCard: React.FC<TaskProps> = ({
-  title,
-  dueDate,
-  completedAtDate,
-  assigneeName,
-}) => (
-  <div className="p-4 bg-cyan-400 rounded-md shadow-md">
-    <h3 className="text-lg font-bold">{title}</h3>
-    {dueDate && <p>Due on: {formatWithIntl(dueDate)}</p>}
-    {completedAtDate && <p>Completed on: {formatWithIntl(completedAtDate)}</p>}
-    {assigneeName && <p>Assignee: {assigneeName}</p>}
-  </div>
-);
+interface CompletedTask extends BaseTask {
+  completedAtDate: Date;
+}
+
+type TaskProps = 
+  | ({ dueDate: Date } & BaseTask)
+  | ({ completedAtDate: Date } & BaseTask);
+
+ const TaskCard: React.FC<TaskProps> = (props) => {
+  const format = (d: Date) =>
+    d.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+  if ("dueDate" in props) {
+    return (
+      <div className="bg-cyan-800 text-md font-semibold p-2 rounded-md">
+        <h3>{props.title}</h3>
+        <p>Due on: {format(props.dueDate)}</p>
+        <p>Assigned to: {props.assigneeName}</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="bg-cyan-800 text-md font-semibold p-2 rounded-md">
+        <h3>{props.title}</h3>
+        <p>Completed on: {format(props.completedAtDate)}</p>
+        <p>Assigned to: {props.assigneeName}</p>
+      </div>
+    );
+  }
+};
 
 export default TaskCard;
