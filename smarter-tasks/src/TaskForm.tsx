@@ -31,42 +31,60 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormSate> {
   };
 
   titlechanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    console.log(`${event.target.value}`);
     this.setState({
       title: event.target.value,
     });
   };
 
   descriptionchanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    console.log(`${event.target.value}`);
     this.setState({
       description: event.target.value,
     });
   };
 
-   duedatechanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    console.log(`${event.target.value}`);
+  duedatechanged: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     this.setState({
       dueDate: event.target.value,
     });
   };
   render(): React.ReactNode {
     return (
-      <form onSubmit={this.addTask}>
+      <form
+        onSubmit={this.addTask}
+        className="space-y-4 flex flex-col justify-center"
+      >
         <input
+          className="border-2 border-gray-500 rounded-sm  p-1"
+          placeholder="Enter the titile"
           type="text"
           id="todoTitle"
           value={this.state.title}
           onChange={this.titlechanged}
+          required
         />
         <input
           type="text"
+          className="border-2 border-gray-500 rounded-sm p-1"
+          placeholder="Enter the description"
           id="todoDescription"
           onChange={this.descriptionchanged}
           value={this.state.description}
+          required
         />
-        <input type="text" id="todoDueDate" value={this.state.dueDate} onChange={this.duedatechanged} />
-        <button type="submit" id="addTaskButton">
+        <input
+          type="text"
+          className="border-2 border-gray-500 rounded-sm p-1"
+          placeholder="Enter the duedate "
+          id="todoDueDate"
+          value={this.state.dueDate}
+          onChange={this.duedatechanged}
+          required
+        />
+        <button
+          type="submit"
+          id="addTaskButton"
+          className="border  rounded-md  bg-gray-500 text-white px-4 py-2 block"
+        >
           Add item
         </button>
       </form>

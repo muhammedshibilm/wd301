@@ -7,20 +7,25 @@ type TaskAppProps = object
 
 interface TaskAppState{
     tasks: TaskItems[];
+
 }
 class TaskApp extends React.Component<TaskAppProps, TaskAppState>{
     constructor(props: TaskAppProps){
         super(props)
         this.state = {
-            tasks: []
+            tasks: [],
         }
     }
 
     addTask = (task: TaskItems) =>{
-        this.setState({
-            tasks: [...this.state.tasks, task]
-        })
+        if (task.title != null && task.description != null && task.dueDate !=null ) {
+          this.setState({
+            tasks: [
+               ...this.state.tasks, task
+            ]});
+        }
     }
+  
     render(): React.ReactNode {
         return    (  <div className="container py-10 max-w-4xl mx-auto">
         <h1 className="text-3xl mb-2 font-bold text-slate-700">
@@ -37,7 +42,9 @@ class TaskApp extends React.Component<TaskAppProps, TaskAppState>{
               Pending
             </h1>
             <TaskForm  addTask={this.addTask} />
-            <TaskList tasks={this.state.tasks} />
+            <div className="grid md:grid-cols-2 gap-2">
+              <TaskList tasks={this.state.tasks} />
+            </div>
           </div>
         </div>
       </div>)
