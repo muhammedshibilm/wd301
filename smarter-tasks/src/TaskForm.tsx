@@ -10,6 +10,9 @@ interface TaskFormSate {
   dueDate: string;
 }
 class TaskForm extends React.Component<TaskFormProps, TaskFormSate> {
+
+    today = new Date().toISOString().split("T")[0];
+
   constructor(props: TaskFormProps) {
     super(props);
     this.state = {
@@ -53,33 +56,36 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormSate> {
         onSubmit={this.addTask}
         className="space-y-4 flex flex-col justify-center"
       >
+        <label htmlFor="todoTitle" className="font-semibold text-center">Task Title</label>
         <input
           className="border-2 border-gray-500 rounded-sm  p-1"
-          placeholder="Enter the titile"
           type="text"
           id="todoTitle"
           value={this.state.title}
           onChange={this.titlechanged}
           required
         />
-        <input
-          type="text"
+        <label htmlFor="todoDueDate" className="font-semibold text-center">Task Due Date</label>
+          <input
+          type="date"
+          min={this.today}
           className="border-2 border-gray-500 rounded-sm p-1"
-          placeholder="Enter the description"
-          id="todoDescription"
-          onChange={this.descriptionchanged}
-          value={this.state.description}
-          required
-        />
-        <input
-          type="text"
-          className="border-2 border-gray-500 rounded-sm p-1"
-          placeholder="Enter the duedate "
           id="todoDueDate"
           value={this.state.dueDate}
           onChange={this.duedatechanged}
           required
         />
+           <label htmlFor="todoDescription" className="font-semibold text-center">Task Description</label>
+        <input
+          type="text"
+          className="border-2 border-gray-500 rounded-sm p-1"
+          id="todoDescription"
+          onChange={this.descriptionchanged}
+          value={this.state.description}
+          required
+        />
+       
+      
         <button
           type="submit"
           id="addTaskButton"

@@ -28,11 +28,11 @@ class TaskApp extends React.Component<TaskAppProps, TaskAppState>{
   
     render(): React.ReactNode {
         return    (  <div className="container py-10 max-w-4xl mx-auto">
-        <h1 className="text-3xl mb-2 font-bold text-slate-700">
+        <h1 className="text-3xl text-center  mb-2 font-bold text-slate-700">
           Smarter Tasks
           
         </h1>
-        <h1 className="text-lg mb-6 text-slate-600">
+        <h1 className="text-lg text-center mb-6 text-slate-600">
           <span className="font-bold">Project: </span>
           Graduation Final Year Project (Revamp college website)
         </h1>
