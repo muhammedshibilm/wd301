@@ -21,7 +21,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormSate> {
   addTask: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    const newTask = {
+    const newTask  = {
       title: this.state.title,
       description: this.state.description,
       dueDate: this.state.dueDate,
