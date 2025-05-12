@@ -4,9 +4,15 @@ interface TaskProps {
   title: string;
   description: string;
   dueDate: string;
+  onDelete: () => void;
+
 }
 
+
 const Task = (props: TaskProps) => {
+
+
+  
   return (
 <li>
       <div className="TaskItem shadow-md border border-slate-100">
@@ -14,7 +20,7 @@ const Task = (props: TaskProps) => {
       <p className="text-sm text-slate-500">Due Date: {props.dueDate}</p>
       <p className="text-sm text-slate-500">Description: {props.description}</p>
       <div className="grid place-items-end">
-        <button className="deleteTaskButton py-2 px-4 bg-red-500 rounded-md text-white font-semibold">Delete</button>
+        <button className="deleteTaskButton py-2 px-4 bg-red-500 rounded-md text-white font-semibold"  onClick={props.onDelete} >Delete</button>
       </div>
     </div>
 </li>

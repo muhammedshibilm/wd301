@@ -16,11 +16,18 @@ interface TaskAppState{
 const TaskApp =  (_props: TaskAppProps) =>{
   const [tasksState, setTaskState ] = useLocalStorage<TaskAppState>("task" , {tasks: []});
 
+  //add task function
   const addTask = (task: TaskItems) =>{
     if (task.title != null && task.description != null && task.dueDate !=null ) {
       setTaskState({tasks: [...tasksState.tasks, task]});
     }
   }
+ //Delete the task function 
+  const deleteTask = (index: number) => {
+  const newTasks = tasksState.tasks.filter((_, i) => i !== index);
+  setTaskState({ tasks: newTasks });
+};
+
 
   useEffect(()=>{
     const id = setTimeout(() => {  //setTimeOut is a async method 
@@ -34,7 +41,7 @@ const TaskApp =  (_props: TaskAppProps) =>{
       clearTimeout(id);
     }
         
-  },[tasksState.tasks])
+  },[tasksState.tasks]);
   return(
         <div className="container py-10 max-w-4xl mx-auto">
         <h1 className="text-3xl text-center  mb-2 font-bold text-slate-700">
@@ -51,9 +58,7 @@ const TaskApp =  (_props: TaskAppProps) =>{
               Pending
             </h1>
            <TaskForm  addTask={addTask} />
-            <ul className="">
-              <TaskList tasks={tasksState.tasks} />
-            </ul>
+              <TaskList tasks={tasksState.tasks}  onDeleteTask={deleteTask}/>
           </div>
         </div>
       </div>
