@@ -51,9 +51,9 @@ const TaskApp =  (_props: TaskAppProps) =>{
               Pending
             </h1>
             <TaskForm  addTask={addTask} />
-            <div className="grid md:grid-cols-2 gap-2">
+            <ul className="">
               <TaskList tasks={tasksState.tasks} />
-            </div>
+            </ul>
           </div>
         </div>
       </div>

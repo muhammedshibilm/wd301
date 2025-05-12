@@ -13,7 +13,7 @@ const TaskList = (props : Props) =>{
       <Task title={value.title} description={value.description} dueDate={value.dueDate} key={index}  />
     )); // in a group of element passing time its assing to variable and pass it other wise its shwoing error 
 
-  return <>{taskList}</>
+  return <li>{taskList}</li>
 }
 
 export default TaskList;
