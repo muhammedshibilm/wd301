@@ -23,8 +23,9 @@ const TaskApp =  (_props: TaskAppProps) =>{
     }
   }
  //Delete the task function 
-  const deleteTask = (index: number) => {
-  const newTasks = tasksState.tasks.filter((_, i) => i !== index);
+  const deleteTask = (id: number) => {
+  alert("clicked")
+  const newTasks = tasksState.tasks.filter((_, i) => i !== id);
   setTaskState({ tasks: newTasks });
 };
 
@@ -57,7 +58,7 @@ const TaskApp =  (_props: TaskAppProps) =>{
             <h1 className="text-slate-500 text-xl font-bold text-center mb-2">
               Pending
             </h1>
-           <TaskForm  addTask={addTask} />
+           <TaskForm  addTask={addTask} tasks={tasksState.tasks} />
               <TaskList tasks={tasksState.tasks}  onDeleteTask={deleteTask}/>
           </div>
         </div>

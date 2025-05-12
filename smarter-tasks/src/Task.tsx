@@ -1,10 +1,11 @@
 import "./TaskCard.css";
 
 interface TaskProps {
+  id: number,
   title: string;
   description: string;
   dueDate: string;
-  onDelete: () => void;
+  onDelete: (id :number) => void;
 
 }
 
@@ -20,7 +21,7 @@ const Task = (props: TaskProps) => {
       <p className="text-sm text-slate-500">Due Date: {props.dueDate}</p>
       <p className="text-sm text-slate-500">Description: {props.description}</p>
       <div className="grid place-items-end">
-        <button className="deleteTaskButton py-2 px-4 bg-red-500 rounded-md text-white font-semibold"  onClick={props.onDelete} >Delete</button>
+        <button className="deleteTaskButton cursor-pointer py-2 px-4 bg-red-500 rounded-md text-white font-semibold"  onClick={() => props.onDelete(props.id)} >Delete</button>
       </div>
     </div>
 </li>
