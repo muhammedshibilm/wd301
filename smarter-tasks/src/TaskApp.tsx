@@ -50,7 +50,7 @@ const TaskApp =  (_props: TaskAppProps) =>{
             <h1 className="text-slate-500 text-xl font-bold text-center mb-2">
               Pending
             </h1>
-            <TaskForm  addTask={addTask} />
+           <TaskForm  addTask={addTask} />
             <ul className="">
               <TaskList tasks={tasksState.tasks} />
             </ul>
