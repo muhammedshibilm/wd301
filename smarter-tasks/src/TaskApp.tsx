@@ -23,11 +23,11 @@ const TaskApp =  (_props: TaskAppProps) =>{
     }
   }
  //Delete the task function 
-  const deleteTask = (id: number) => {
-  alert("clicked")
-  const newTasks = tasksState.tasks.filter((_, i) => i !== id);
-  setTaskState({ tasks: newTasks });
-};
+  const deleteTask = (idx: number) => {
+    const updatedTasks = [...tasksState.tasks];
+    updatedTasks.splice(idx,1);
+    setTaskState({ tasks: updatedTasks });
+  };
 
 
   useEffect(()=>{

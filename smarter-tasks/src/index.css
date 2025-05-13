@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+.deleteTaskButton {
+    background-color: #ff0000; 
+    color: #fff; 
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+.deleteTaskButton:hover {
+    background-color: #cc0000; 
+  }
